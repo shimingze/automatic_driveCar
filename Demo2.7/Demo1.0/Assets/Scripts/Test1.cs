@@ -102,19 +102,20 @@ public class Test1 : MonoBehaviour
         
         // tar = GetRelativePosition(Target.transform, obj.transform.position).x.ToString("0.00") + ","    //Target.transform.name+","+
         //       + GetRelativePosition(Target.transform, obj.transform.position).y.ToString("0.00") + "," 
-        //       + GetRelativePosition(Target.transform, obj.transform.position).z.ToString("0.00") + "," + "1,1,2," 
+        //       + GetRelativePosition(Target.transform, obj.transform.position).z.ToString("0.00") + "," + "0.5,0.5,0.5," 
         //       + RelativeRotation;// + GetRelativeRotation(obj);
         
-        tar = GetRelativePosition(Move.transform, Target.transform.position).x.ToString("0.00") + ","    //Target.transform.name+","+
+        /*tar = GetRelativePosition(Move.transform, Target.transform.position).x.ToString("0.00") + ","    //Target.transform.name+","+
             + GetRelativePosition(Move.transform, Target.transform.position).y.ToString("0.00") + "," 
-            + GetRelativePosition(Move.transform, Target.transform.position).z.ToString("0.00") + "," + "1,1,2," 
+            + GetRelativePosition(Move.transform, Target.transform.position).z.ToString("0.00") + "," + "0.5,0.5,0.5," 
             + RelativeRotation;// + GetRelativeRotation(obj);
+        print(tar);*/
         
         // mTcpSocket.Send(Encoding.UTF8.GetBytes(tar));
         oth = GetRelativePosition(origin, obj.transform.position).x.ToString("0.00") + ","      //obj.transform.name+
               +GetRelativePosition(origin, obj.transform.position).y.ToString("0.00") + ","
               +GetRelativePosition(origin, obj.transform.position).z.ToString("0.00") + ","
-              + "1,1,2," + RelativeRotation;// + GetRelativeRotation(obj);
+              + "0.5,0.5,0.5," + RelativeRotation;// + GetRelativeRotation(obj);
         //print(oth);
         return oth;
     }
@@ -350,9 +351,14 @@ public class Test1 : MonoBehaviour
                 }
             }
         }
-        string strtemp;
-        // print("目标物体的坐标："+Test1.tar);
-        strtemp = Test1.tar + ",";
+        string strtemp = "";
+        string strtar = "";
+        strtar = GetRelativePosition(Move.transform, Target.transform.position).x.ToString("0.00") + ","    //Target.transform.name+","+
+              + GetRelativePosition(Move.transform, Target.transform.position).y.ToString("0.00") + ","
+              + GetRelativePosition(Move.transform, Target.transform.position).z.ToString("0.00") + "," + "1,1,2,"
+              + "0";// + GetRelativeRotation(obj);
+
+        strtemp =   strtar + ",";
         for (int i = 0; i < locationlist.Count; i++)
         {
             strtemp = strtemp+locationlist[i].ToString()+",";
@@ -366,7 +372,7 @@ public class Test1 : MonoBehaviour
         //print("strtemp     =  "+strtemp+"                           ");
         Send(strtemp);
         print("strtemp的值："+strtemp);
-        strtemp = null;
+        strtemp = "";
         // AI.transform.Rotate(new Vector3(0, 0, 90));  //绕z轴旋转
     }
 
